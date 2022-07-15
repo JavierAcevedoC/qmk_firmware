@@ -66,10 +66,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [_MACOS] = LAYOUT( \
-  KC_GESC,          KC_1,       KC_2,    KC_3,    KC_4,    KC_5,                        KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_BSPC, \
+  KC_TAB,           KC_1,       KC_2,    KC_3,    KC_4,    KC_5,                        KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_BSPC, \
   LSFT_T(KC_TAB),   KC_QUOTE,   KC_COMM, KC_DOT,  KC_P,    KC_Y,                        KC_F,    KC_G,    KC_C,    KC_R,    KC_L,     KC_BSLS, \
   KC_LCTRL,         MAC_A,      MAC_O,   MAC_E,   MAC_U,   MAC_I,                       KC_D,    KC_H,    KC_T,    KC_N,    KC_S,     KC_QUOTE, \
-  LCTL_T(KC_CAPS),  KC_SCLN,    KC_Q,    KC_J,    KC_K,    KC_X, KC_MUTE,     XXXXXXX,  KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,     RSFT_T(ALGR(KC_SLASH)), \
+  LCTL_T(KC_CAPS),  KC_SCLN,    KC_Q,    KC_J,    KC_K,    KC_X, KC_MUTE,     XXXXXXX,  KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,     KC_GESC, \
                  KC_LBRC ,KC_LGUI, KC_LCMD, SYMB, KC_SPC,                       KC_ENT,  MT(NUMP,KC_ENT), TD(ALT), KC_RALT, KC_RBRC \
 ),
 /*
@@ -111,8 +111,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_NUMP] = LAYOUT( \
   KC_F1,    KC_F2,     KC_F3,   KC_F4,   KC_F5,               KC_F6,                                   KC_F7,   KC_F8,     KC_F9,      KC_F10,   KC_F11,  KC_F12, \
-  KC_MINUS, KC_PPLS,   KC_7,    KC_8,    KC_9,                KC_COMM,                                 KC_RABK, KC_HOME,   KC_UP,      KC_END,   XXXXXXX, KC_BSPC, \
-  KC_SLASH, KC_ASTR,   KC_4,    KC_5,    KC_6,                KC_DOT,                                  KC_LABK, KC_LEFT,   KC_DOWN,    KC_RIGHT, XXXXXXX, XXXXXXX,
+  KC_MINUS, KC_PPLS,   KC_7,    KC_8,    KC_9,                KC_COMM,                                 KC_RABK, KC_HOME,   KC_END,     XXXXXXX,  XXXXXXX, KC_BSPC, \
+  KC_SLASH, KC_ASTR,   KC_4,    KC_5,    KC_6,                KC_DOT,                                  KC_LABK, KC_LEFT,   KC_DOWN,    KC_UP,   KC_RIGHT, XXXXXXX,
   KC_CIRC,  KC_EQUAL,  KC_1,    KC_2,    KC_3,                KC_0,            _______,       _______, XXXXXXX, LSFT(KC_9),LSFT(KC_0), XXXXXXX,  XXXXXXX, XXXXXXX, \
                        _______, _______, MT(KC_LCMD,KC_CAPS), MT(SYMB,KC_ENT), _______,       _______, _______, _______, _______, _______\
 ),
@@ -132,8 +132,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_SYMB] = LAYOUT( \
   _______,     _______,   _______,    _______, _______ ,  _______,                          _______,       _______,        _______,  _______,      _______ ,_______, \
-  TD(ESC_SYM), KC_EXLM,   ALGR(KC_1), KC_HASH, KC_DOLLAR, KC_PERC,                          KC_AMPR,       KC_HOME,        KC_UP,   KC_END,        KC_PGUP, KC_DEL,
-  XXXXXXX,     KC_LCBR,   KC_RCBR,    KC_LBRC, KC_RBRC,   KC_BSLS,                          LSFT(KC_BSLS), KC_LEFT,        KC_DOWN, KC_RIGHT,      KC_PGDN, XXXXXXX,
+  TD(ESC_SYM), KC_EXLM,   ALGR(KC_1), KC_HASH, KC_DOLLAR, KC_PERC,                          KC_AMPR,       KC_HOME,        KC_END,   KC_PGUP,      KC_PGDN , KC_DEL,
+  XXXXXXX,     KC_LCBR,   KC_RCBR,    KC_LBRC, KC_RBRC,   KC_BSLS,                          LSFT(KC_BSLS), KC_LEFT,        KC_DOWN,  KC_UP,        KC_RIGHT, XXXXXXX,
   XXXXXXX,     LSFT(KC_9),LSFT(KC_0), XXXXXXX, XXXXXXX,   KC_PSCR, _______,       XXXXXXX,  KC_EQUAL,      ALGR(KC_QUOTE), XXXXXXX, ALGR(KC_BSLS), KC_TILDE,XXXXXXX,\
                    _______, _______, MT(KC_LCMD,KC_CAPS), _______, _______,       _______, _______, _______, _______, _______ \
 ),
@@ -155,7 +155,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
   RESET,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
   RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, RGB_SPI,   RGB_MOD,                      XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU, OS,      XXXXXXX, \
-  XXXXXXX, RGB_HUD, RGB_SAD, RGB_VAD, RGB_SPD,   XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+  XXXXXXX, RGB_HUD, RGB_SAD, RGB_VAD, RGB_SPD,   XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, KC_MEDIA_PLAY_PAUSE, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
          _______, _______, MT(KC_LCMD,KC_CAPS) , _______, _______,    _______, _______, _______, _______, _______ \
   ),
 /* _MOUSE
