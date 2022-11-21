@@ -97,13 +97,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 /* _NUMP
  * ,-----------------------------------------.                     ,-----------------------------------------.
- * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |                     |  F7  |  F8  |  F9  |  F10  | F11  | F12 |
+ * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |                     |  F7  |  F8  |  F9  |  F10 | F11  | F12 |
  * |------+------+------+------+------+------|                     |------+------+------+------+------+------|
- * |   -  |   +  |  7   |   8  |  9   |  ,   |                     |  >   | HOME |   UP |  END |      |BCKSPC|
+ * |   -  |   +  |  7   |   8  |  9   |  ,   |                     |  >   | HOME |  UP  |  END |      |BCKSPC|
  * |------+------+------+------+------+------|                     |------+------+------+------+------+------|
- * |  /   |   *  |  4   |   5  |  6   |  .   |-------.     ,-------|  <   |LEFT  | DOWN | RIGHT|      |      |
+ * |  /   |   *  |  4   |   5  |  6   |  .   |-------.     ,-------|  <   |      |  =   |   /  |   _  |  |   |
  * |------+------+------+------+------+------|  MUTE |     |       |------+------+------+------+------+------|
- * |  ^   |   =  |  1   |   2  |  3   |  0   |-------|     |-------|      |  (   |  )   |      |      |      |
+ * |  ^   |   =  |  1   |   2  |  3   |  0   |-------|     |-------|  {   |  }   |  )   |   +  |   -  |      |
  * `-----------------------------------------/       /      \      \-----------------------------------------'
  *            |   [  | LGUI | CMD  |SYMB  | /SPACE  /        \SPACE \  |NUMP  | ALTGR| RALT |   ]  |
  *            |      |      | CAPS |ENTER |/       /          \      \ |ENTER | ALT  |      |      |
@@ -112,15 +112,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_NUMP] = LAYOUT( \
   KC_F1,    KC_F2,     KC_F3,   KC_F4,   KC_F5,               KC_F6,                                   KC_F7,   KC_F8,     KC_F9,      KC_F10,   KC_F11,  KC_F12, \
   KC_MINUS, KC_PPLS,   KC_7,    KC_8,    KC_9,                KC_COMM,                                 KC_RABK, KC_HOME,   KC_END,     XXXXXXX,  XXXXXXX, KC_BSPC, \
-  KC_SLASH, KC_ASTR,   KC_4,    KC_5,    KC_6,                KC_DOT,                                  KC_LABK, KC_LEFT,   KC_DOWN,    KC_UP,   KC_RIGHT, XXXXXXX,
-  KC_CIRC,  KC_EQUAL,  KC_1,    KC_2,    KC_3,                KC_0,            _______,       _______, XXXXXXX, LSFT(KC_9),LSFT(KC_0), XXXXXXX,  XXXXXXX, XXXXXXX, \
+  KC_SLASH, KC_ASTR,   KC_4,    KC_5,    KC_6,                KC_DOT,                                  KC_LABK, XXXXXXX,   KC_EQUAL,    KC_SLASH,   KC_UNDERSCORE, KC_PIPE,
+  KC_CIRC,  KC_EQUAL,  KC_1,    KC_2,    KC_3,                KC_0,            _______,       _______, KC_LCBR, KC_RCBR,LSFT(KC_0), KC_PLUS,  KC_MINUS, XXXXXXX, \
                        _______, _______, MT(KC_LCMD,KC_CAPS), MT(SYMB,KC_ENT), _______,       _______, _______, _______, _______, _______\
 ),
 /* _SYMB
  * ,----------------------------------------.                      ,-----------------------------------------.
  * |  `   |   1  |   2  |   3  |   4  |   5  |                     |   6  |   7  |   8  |   9  |   0  |  `   |
  * |------+------+------+------+------+------|                     |------+------+------+------+------+------|
- * |  ` ~ |  !   |  �   |  #   |  $   | %    |                     |  &   | HOME | UP   | END  |PGUP  |BKSPCK|
+ * |  ` ~ |  !   |  @   |  #   |  $   | %    |                     |  &   | HOME | UP   | END  |PGUP  |BKSPCK|
  * |------+------+------+------+------+------|                     |------+------+------+------+------+------|
  * |      |  {   |  }   |  [   |  ]   |  \   |-------.     ,-------|  |   | LEFT | DOWN |RIGHT |PGDOWN|      |
  * |------+------+------+------+------+------|  MUTE |     |       |------+------+------+------+------+------|
@@ -132,7 +132,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_SYMB] = LAYOUT( \
   _______,     _______,   _______,    _______, _______ ,  _______,                          _______,       _______,        _______,  _______,      _______ ,_______, \
-  TD(ESC_SYM), KC_EXLM,   ALGR(KC_1), KC_HASH, KC_DOLLAR, KC_PERC,                          KC_AMPR,       KC_HOME,        KC_END,   KC_PGUP,      KC_PGDN , KC_DEL,
+  TD(ESC_SYM), KC_EXLM,   KC_AT,      KC_HASH, KC_DOLLAR, KC_PERC,                          KC_AMPR,       KC_HOME,        KC_END,   KC_PGUP,      KC_PGDN , KC_DEL,
   XXXXXXX,     KC_LCBR,   KC_RCBR,    KC_LBRC, KC_RBRC,   KC_BSLS,                          LSFT(KC_BSLS), KC_LEFT,        KC_DOWN,  KC_UP,        KC_RIGHT, XXXXXXX,
   XXXXXXX,     LSFT(KC_9),LSFT(KC_0), XXXXXXX, XXXXXXX,   KC_PSCR, _______,       XXXXXXX,  KC_EQUAL,      ALGR(KC_QUOTE), XXXXXXX, ALGR(KC_BSLS), KC_TILDE,XXXXXXX,\
                    _______, _______, MT(KC_LCMD,KC_CAPS), _______, _______,       _______, _______, _______, _______, _______ \
@@ -154,7 +154,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_TUNE] = LAYOUT( \
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
   RESET,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-  RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, RGB_SPI,   RGB_MOD,                      XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU, OS,      XXXXXXX, \
+  RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, RGB_SPI,   RGB_M_K,                      XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU, OS,      XXXXXXX, \
   XXXXXXX, RGB_HUD, RGB_SAD, RGB_VAD, RGB_SPD,   XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, KC_MEDIA_PLAY_PAUSE, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
          _______, _______, MT(KC_LCMD,KC_CAPS) , _______, _______,    _______, _______, _______, _______, _______ \
   ),
@@ -766,34 +766,34 @@ layer_state_t layer_state_set_user(layer_state_t state) {
         // if (!host_keyboard_led_state().caps_lock) {
         //     rgblight_sethsv(HSV_TEAL);
         // }
-        pimoroni_trackball_set_rgbw(255, 0, 0, 0.5);
+        pimoroni_trackball_set_rgbw(128, 0, 255, 0.5);
         break;
     case _SYMB:
         // if (!host_keyboard_led_state().caps_lock) {
         //     rgblight_sethsv(HSV_TEAL);
         // }
-        pimoroni_trackball_set_rgbw(0, 0, 255, 0.5);
+        pimoroni_trackball_set_rgbw(128, 0, 255, 0.5);
         break;
     case _TUNE:
         // if (!host_keyboard_led_state().caps_lock) {
         //     rgblight_sethsv(HSV_TEAL);
         // }
-        pimoroni_trackball_set_rgbw(255, 0, 255, 0.5);
+        pimoroni_trackball_set_rgbw(128, 0, 255, 0.5);
         break;
     case _WIN10:
         // if (!host_keyboard_led_state().caps_lock) {
         //     rgblight_sethsv(HSV_TEAL);
         // }
-        pimoroni_trackball_set_rgbw(255, 255, 255, 0.5);
+        pimoroni_trackball_set_rgbw(128, 0, 255, 0.5);
         break;
     case _MACOS:
         // if (!host_keyboard_led_state().caps_lock) {
         //     rgblight_sethsv(HSV_TEAL);
         // }
-        pimoroni_trackball_set_rgbw(255, 255, 255, 0.5);
+        pimoroni_trackball_set_rgbw(128, 0, 255, 0.5);
         break;
     case _MOUSE:
-        pimoroni_trackball_set_rgbw(0, 255, 0, 0.5);
+        pimoroni_trackball_set_rgbw(128, 0, 255, 0.5);
         break;
     }
 #endif
@@ -820,7 +820,7 @@ static bool           is_scrolling        = false;
 
 report_mouse_t smooth_mouse_movement(report_mouse_t mouse_report) {
     // Linear interpolation and ease-in-out
-    static fract8 fract = 0.5;
+    static fract8 fract = 0.3;
     int8_t        x     = 0;
     int8_t        y     = 0;
     int8_t        h     = 0;
@@ -845,5 +845,5 @@ report_mouse_t smooth_mouse_movement(report_mouse_t mouse_report) {
 
 void keyboard_post_init_kb(void) {
     keyboard_post_init_user();
-    pimoroni_trackball_set_rgbw(255, 255, 255, 0.5);
+    pimoroni_trackball_set_rgbw(128, 0, 255, 0.5);
 }
