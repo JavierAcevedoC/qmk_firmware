@@ -2,14 +2,7 @@
 #include <string.h>
 #include "lib/lib8tion/lib8tion.h"
 
-#ifdef OLED_ENABLE
-#include <stdio.h>
-
-char wpm_str[4];
-#endif
-
 enum sofle_layers {
-    _MACOS,
     _WIN10,
     _NUMP,
     _SYMB,
@@ -21,12 +14,6 @@ enum custom_keycodes {
     SYMB = SAFE_RANGE,
     NUMP,
     OS,
-    MAC_A,
-    MAC_E,
-    MAC_I,
-    MAC_O,
-    MAC_U,
-    MAC_N,
     KC_MOUSE_BTN1,
     KC_MOUSE_BTN2
 };
@@ -50,7 +37,7 @@ uint16_t trackball_led_timer;
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
- * _MACOS
+ * _WIN10
  * ,--------------------------------------------.                    ,-----------------------------------------.
  * | ESC DEL |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  | Bspc |
  * |---------+------+------+------+------+------|                    |------+------+------+------+------+------|
@@ -65,35 +52,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *              `-----------------------------------'           '------''---------------------------'
  */
 
-[_MACOS] = LAYOUT( \
+[_WIN10] = LAYOUT( \
   KC_TAB,           KC_1,       KC_2,    KC_3,    KC_4,    KC_5,                        KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_BSPC, \
   LSFT_T(KC_TAB),   KC_QUOTE,   KC_COMM, KC_DOT,  KC_P,    KC_Y,                        KC_F,    KC_G,    KC_C,    KC_R,    KC_L,     KC_BSLS, \
-  KC_LCTRL,         MAC_A,      MAC_O,   MAC_E,   MAC_U,   MAC_I,                       KC_D,    KC_H,    KC_T,    KC_N,    KC_S,     KC_QUOTE, \
+  KC_LCTRL,         KC_A,       KC_O,    KC_E,    KC_U,    KC_I,                        KC_D,    KC_H,    KC_T,    KC_N,    KC_S,     KC_QUOTE, \
   LCTL_T(KC_CAPS),  KC_SCLN,    KC_Q,    KC_J,    KC_K,    KC_X, KC_MUTE,     XXXXXXX,  KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,     KC_GESC, \
                  KC_LBRC ,KC_LGUI, KC_LCMD, SYMB, KC_SPC,                       KC_ENT,  MT(NUMP,KC_ENT), TD(ALT), KC_RALT, KC_RBRC \
-),
-/*
- * _WIN10
- * ,-----------------------------------------.                    ,-----------------------------------------.
- * |  `   |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | ESC  |   Q  |   W  |   F  |   P  |   G  |                    |   J  |   L  |   U  |   Y  |   ;  | Bspc |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | TAB  |   A  |   R  |   S  |   T  |   D  |-------.    ,-------|   H  |   N  |   E  |   I  |   O  |  '   |
- * |------+------+------+------+------+------|  MUTE |    |       |------+------+------+------+------+------|
- * |LShift|   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   K  |   M  |   ,  |   .  |   /  |RShift|
- * `-----------------------------------------/       /     \      \-----------------------------------------'
- *            |   [  | LGUI | CMD  |SYMB  | /SPACE  /       \SPACE \  |NUMP  | ALTGR| RALT |   ]  |
- *            |      |      | CAPS |      |/       /         \      \ |ENTER | ALT  |      |      |
- *            `-----------------------------------'           '------''---------------------------'
- */
-
-[_WIN10] = LAYOUT( \
-  _______, _______, _______, _______, _______, _______,                          _______, _______, _______, _______, _______, _______, \
-  _______, _______, _______, KC_E,    _______, _______,                          _______, KC_U,    KC_I,    KC_O,    _______, _______, \
-  _______, KC_A,    _______, _______, _______, _______,                          _______, _______, _______, _______, _______, _______, \
-  _______, _______, _______, _______, _______, _______, _______,       XXXXXXX,  KC_N,    _______, _______, _______, _______, _______, \
-                    _______, _______, _______, _______, _______,                 _______, _______, _______, _______, _______ \
 ),
 /* _NUMP
  * ,-----------------------------------------.                     ,-----------------------------------------.
@@ -154,7 +118,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_TUNE] = LAYOUT( \
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
   RESET,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-  RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, RGB_SPI,   RGB_M_K,                      XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU, OS,      XXXXXXX, \
+  RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, RGB_SPI,   RGB_M_G,                      XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU, OS,      XXXXXXX, \
   XXXXXXX, RGB_HUD, RGB_SAD, RGB_VAD, RGB_SPD,   XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, KC_MEDIA_PLAY_PAUSE, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
          _______, _______, MT(KC_LCMD,KC_CAPS) , _______, _______,    _______, _______, _______, _______, _______ \
   ),
@@ -204,18 +168,12 @@ static void print_status_narrow(void) {
     oled_write_P(PSTR("\n\n"), false);
     oled_write_ln_P(PSTR("MODE"), false);
     oled_write_ln_P(PSTR(""), false);
-
-    if (IS_LAYER_ON(_WIN10)) {
-        oled_write_ln_P(PSTR("MAC"), false);
-    } else {
-        oled_write_ln_P(PSTR("WIN"), false);
-    }
+    oled_write_ln_P(PSTR("Xavi"), false);
 
     oled_write_P(PSTR("\n\n"), false);
     // Print current layer
     oled_write_ln_P(PSTR("LAYER"), false);
     switch (get_highest_layer(layer_state)) {
-        case _MACOS:
         case _WIN10:
             oled_write_P(PSTR("BASE\n"), false);
             break;
@@ -459,253 +417,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
         case OS:
             if (record->event.pressed) {
-                if (IS_LAYER_OFF(_WIN10)) {
-                    layer_on(_WIN10);
-                } else {
-                    layer_off(_WIN10);
-                }
-            } else {
-                ;
-            }
-            return false;
-
-        case MAC_A:
-            if (record->event.pressed) { // al presionar el keycode
-                if (mod_state & MOD_MASK_ALT) { // si algun ALT esta presionado
-                    if (mod_state & MOD_MASK_SHIFT) {
-                        del_mods(MOD_MASK_ALT);
-                        del_mods(MOD_MASK_SHIFT);
-                        tap_code16(ALGR(KC_E)); // registrar ALTGR + e
-                        tap_code16(LSFT(KC_A)); // registrar A
-                        key_registered = true;
-                        set_mods(mod_state);
-                        return false;
-                    } else {
-                        del_mods(MOD_MASK_ALT);
-                        tap_code16(ALGR(KC_E)); // registrar ALTGR + e
-                        tap_code16(KC_A); // registrar a
-                        key_registered = true;
-                        set_mods(mod_state);
-                        return false;
-                    }
-                } else { // si no hay ningun ALT presionado
-                    if (mod_state & MOD_MASK_SHIFT) { // si SHIFT esta presionado
-                        del_mods(MOD_MASK_SHIFT);
-                        tap_code16(LSFT(KC_A));
-                        key_registered = true;
-                        set_mods(mod_state);
-                        return false;
-                    } else { // si SHIFT no esta presionado
-                        tap_code16(KC_A);
-                        key_registered = true;
-                        return false;
-                    }
-                }
-            } else { // al liberar el keycode
-                if (key_registered) {
-                    key_registered = false;
-                    return false;
-                }
-            }
-            return false;
-
-        case MAC_E:
-            if (record->event.pressed) { // al presionar el keycode
-                if (mod_state & MOD_MASK_ALT) { // si algun ALT esta presionado
-                    if (mod_state & MOD_MASK_SHIFT) {
-                        del_mods(MOD_MASK_ALT);
-                        del_mods(MOD_MASK_SHIFT);
-                        tap_code16(ALGR(KC_E)); // registrar ALTGR + e
-                        tap_code16(LSFT(KC_E)); // registrar E
-                        key_registered = true;
-                        set_mods(mod_state);
-                        return false;
-                    } else {
-                        del_mods(MOD_MASK_ALT);
-                        tap_code16(ALGR(KC_E)); // registrar ALTGR + e
-                        tap_code16(KC_E); // registrar e
-                        key_registered = true;
-                        set_mods(mod_state);
-                        return false;
-                    }
-                } else { // si no hay ningun ALT presionado
-                    if (mod_state & MOD_MASK_SHIFT) { // si SHIFT esta presionado
-                        del_mods(MOD_MASK_SHIFT);
-                        tap_code16(LSFT(KC_E));
-                        key_registered = true;
-                        set_mods(mod_state);
-                        return false;
-                    } else { // si SHIFT no esta presionado
-                        tap_code16(KC_E);
-                        key_registered = true;
-                        return false;
-                    }
-                }
-            } else { // al liberar el keycode
-                if (key_registered) {
-                    key_registered = false;
-                    return false;
-                }
-            }
-            return false;
-
-        case MAC_I:
-            if (record->event.pressed) { // al presionar el keycode
-                if (mod_state & MOD_MASK_ALT) { // si algun ALT esta presionado
-                    if (mod_state & MOD_MASK_SHIFT) {
-                        del_mods(MOD_MASK_ALT);
-                        del_mods(MOD_MASK_SHIFT);
-                        tap_code16(ALGR(KC_E)); // registrar ALTGR + e
-                        tap_code16(LSFT(KC_I)); // registrar I
-                        key_registered = true;
-                        set_mods(mod_state);
-                        return false;
-                    } else {
-                        del_mods(MOD_MASK_ALT);
-                        tap_code16(ALGR(KC_E)); // registrar ALTGR + e
-                        tap_code16(KC_I); // registrar i
-                        key_registered = true;
-                        set_mods(mod_state);
-                        return false;
-                    }
-                } else { // si no hay ningun ALT presionado
-                    if (mod_state & MOD_MASK_SHIFT) { // si SHIFT esta presionado
-                        del_mods(MOD_MASK_SHIFT);
-                        tap_code16(LSFT(KC_I));
-                        key_registered = true;
-                        set_mods(mod_state);
-                        return false;
-                    } else { // si SHIFT no esta presionado
-                        tap_code16(KC_I);
-                        key_registered = true;
-                        return false;
-                    }
-                }
-            } else { // al liberar el keycode
-                if (key_registered) {
-                    key_registered = false;
-                    return false;
-                }
-            }
-            return false;
-
-        case MAC_O:
-            if (record->event.pressed) { // al presionar el keycode
-                if (mod_state & MOD_MASK_ALT) { // si algun ALT esta presionado
-                    if (mod_state & MOD_MASK_SHIFT) {
-                        del_mods(MOD_MASK_ALT);
-                        del_mods(MOD_MASK_SHIFT);
-                        tap_code16(ALGR(KC_E)); // registrar ALTGR + e
-                        tap_code16(LSFT(KC_O)); // registrar O
-                        key_registered = true;
-                        set_mods(mod_state);
-                        return false;
-                    } else {
-                        del_mods(MOD_MASK_ALT);
-                        tap_code16(ALGR(KC_E)); // registrar ALTGR + e
-                        tap_code16(KC_O); // registrar o
-                        key_registered = true;
-                        set_mods(mod_state);
-                        return false;
-                    }
-                } else { // si no hay ningun ALT presionado
-                    if (mod_state & MOD_MASK_SHIFT) { // si SHIFT esta presionado
-                        del_mods(MOD_MASK_SHIFT);
-                        tap_code16(LSFT(KC_O));
-                        key_registered = true;
-                        set_mods(mod_state);
-                        return false;
-                    } else { // si SHIFT no esta presionado
-                        tap_code16(KC_O);
-                        key_registered = true;
-                        return false;
-                    }
-                }
-            } else { // al liberar el keycode
-                if (key_registered) {
-                    key_registered = false;
-                    return false;
-                }
-            }
-            return false;
-
-        case MAC_U:
-            if (record->event.pressed) { // al presionar el keycode
-                if (mod_state & MOD_MASK_ALT) { // si algun ALT esta presionado
-                    if (mod_state & MOD_MASK_SHIFT) {
-                        del_mods(MOD_MASK_ALT);
-                        del_mods(MOD_MASK_SHIFT);
-                        tap_code16(ALGR(KC_E)); // registrar ALTGR + e
-                        tap_code16(LSFT(KC_U)); // registrar U
-                        key_registered = true;
-                        set_mods(mod_state);
-                        return false;
-                    } else {
-                        del_mods(MOD_MASK_ALT);
-                        tap_code16(ALGR(KC_E)); // registrar ALTGR + e
-                        tap_code16(KC_U); // registrar u
-                        key_registered = true;
-                        set_mods(mod_state);
-                        return false;
-                    }
-                } else { // si no hay ningun ALT presionado
-                    if (mod_state & MOD_MASK_SHIFT) { // si SHIFT esta presionado
-                        del_mods(MOD_MASK_SHIFT);
-                        tap_code16(LSFT(KC_U));
-                        key_registered = true;
-                        set_mods(mod_state);
-                        return false;
-                    } else { // si SHIFT no esta presionado
-                        tap_code16(KC_U);
-                        key_registered = true;
-                        return false;
-                    }
-                }
-            } else { // al liberar el keycode
-                if (key_registered) {
-                    key_registered = false;
-                    return false;
-                }
-            }
-            return false;
-
-        case MAC_N:
-            if (record->event.pressed) { // al presionar el keycode
-                if (mod_state & MOD_MASK_ALT) { // si algun ALT esta presionado
-                    if (mod_state & MOD_MASK_SHIFT) {
-                        del_mods(MOD_MASK_ALT);
-                        del_mods(MOD_MASK_SHIFT);
-                        tap_code16(ALGR(KC_N)); // registrar ALTGR + n
-                        tap_code16(LSFT(KC_N));
-                        key_registered = true;
-                        set_mods(mod_state);
-                        return false;
-                    } else {
-                        del_mods(MOD_MASK_ALT);
-                        tap_code16(ALGR(KC_N)); // registrar ALTGR + n
-                        tap_code16(KC_N); // registrar n
-                        key_registered = true;
-                        set_mods(mod_state);
-                        return false;
-                    }
-                } else { // si no hay ningun ALT presionado
-                    if (mod_state & MOD_MASK_SHIFT) { // si SHIFT esta presionado o bloq mayus activado
-                        del_mods(MOD_MASK_SHIFT);
-                        tap_code16(LSFT(KC_N));
-                        key_registered = true;
-                        set_mods(mod_state);
-                        return false;
-                    } else { // si SHIFT no esta presionado ni bloq mayus activado
-                        tap_code16(KC_N);
-                        key_registered = true;
-                        return false;
-                    }
-                }
-            } else { // al liberar el keycode
-                if (key_registered) {
-                    key_registered = false;
-                    return false;
-                }
+                layer_on(_WIN10);
             }
             return false;
 
@@ -763,33 +475,15 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 #ifdef RGBLIGHT_ENABLE
     switch (biton32(state)) {
     case _NUMP:
-        // if (!host_keyboard_led_state().caps_lock) {
-        //     rgblight_sethsv(HSV_TEAL);
-        // }
-        pimoroni_trackball_set_rgbw(128, 0, 255, 0.5);
+        pimoroni_trackball_set_rgbw(0, 40, 255, 0.5);
         break;
     case _SYMB:
-        // if (!host_keyboard_led_state().caps_lock) {
-        //     rgblight_sethsv(HSV_TEAL);
-        // }
-        pimoroni_trackball_set_rgbw(128, 0, 255, 0.5);
+        pimoroni_trackball_set_rgbw(255, 255, 0, 0.5);
         break;
     case _TUNE:
-        // if (!host_keyboard_led_state().caps_lock) {
-        //     rgblight_sethsv(HSV_TEAL);
-        // }
-        pimoroni_trackball_set_rgbw(128, 0, 255, 0.5);
-        break;
+        pimoroni_trackball_set_rgbw(255, 0, 0, 0.5);
+        brea[[sk;
     case _WIN10:
-        // if (!host_keyboard_led_state().caps_lock) {
-        //     rgblight_sethsv(HSV_TEAL);
-        // }
-        pimoroni_trackball_set_rgbw(128, 0, 255, 0.5);
-        break;
-    case _MACOS:
-        // if (!host_keyboard_led_state().caps_lock) {
-        //     rgblight_sethsv(HSV_TEAL);
-        // }
         pimoroni_trackball_set_rgbw(128, 0, 255, 0.5);
         break;
     case _MOUSE:
@@ -820,7 +514,7 @@ static bool           is_scrolling        = false;
 
 report_mouse_t smooth_mouse_movement(report_mouse_t mouse_report) {
     // Linear interpolation and ease-in-out
-    static fract8 fract = 0.3;
+    static fract8 fract = 0.1;
     int8_t        x     = 0;
     int8_t        y     = 0;
     int8_t        h     = 0;
