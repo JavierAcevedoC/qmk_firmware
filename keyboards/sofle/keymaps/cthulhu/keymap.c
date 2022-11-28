@@ -78,7 +78,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_MINUS, KC_PPLS,   KC_7,    KC_8,    KC_9,                KC_COMM,                                 KC_RABK, KC_HOME,   KC_END,     XXXXXXX,  XXXXXXX, KC_BSPC, \
   KC_SLASH, KC_ASTR,   KC_4,    KC_5,    KC_6,                KC_DOT,                                  KC_LABK, XXXXXXX,   KC_EQUAL,    KC_SLASH,   KC_UNDERSCORE, KC_PIPE,
   KC_CIRC,  KC_EQUAL,  KC_1,    KC_2,    KC_3,                KC_0,            _______,       _______, KC_LCBR, KC_RCBR,LSFT(KC_0), KC_PLUS,  KC_MINUS, XXXXXXX, \
-                       _______, _______, MT(KC_LCMD,KC_CAPS), MT(SYMB,KC_ENT), _______,       _______, _______, _______, _______, _______\
+                       _______, _______, MT(KC_LCMD,KC_CAPS), MT(SYMB,KC_ENT), _______,       _______, _______, _______, _______, KC_RCBR\
 ),
 /* _SYMB
  * ,----------------------------------------.                      ,-----------------------------------------.
@@ -99,7 +99,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   TD(ESC_SYM), KC_EXLM,   KC_AT,      KC_HASH, KC_DOLLAR, KC_PERC,                          KC_AMPR,       KC_HOME,        KC_END,   KC_PGUP,      KC_PGDN , KC_DEL,
   XXXXXXX,     KC_LCBR,   KC_RCBR,    KC_LBRC, KC_RBRC,   KC_QUES,                          LSFT(KC_BSLS), KC_LEFT,        KC_DOWN,  KC_UP,        KC_RIGHT, XXXXXXX,
   XXXXXXX,     LSFT(KC_9),LSFT(KC_0), KC_SLASH,KC_BSLS,   KC_PSCR, _______,       XXXXXXX,  KC_EQUAL,      ALGR(KC_QUOTE), XXXXXXX, ALGR(KC_BSLS), KC_TILDE,XXXXXXX,\
-                   _______, _______, MT(KC_LCMD,KC_CAPS), _______, _______,       _______, _______, _______, _______, _______ \
+                KC_LCBR, _______, MT(KC_LCMD,KC_CAPS), _______, _______,       _______, _______, _______, _______, _______ \
 ),
 /* _TUNE
  * ,-----------------------------------------.                    ,-----------------------------------------.
