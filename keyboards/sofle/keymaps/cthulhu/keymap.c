@@ -86,9 +86,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                     |------+------+------+------+------+------|
  * |  ` ~ |  !   |  @   |  #   |  $   | %    |                     |  &   | HOME | UP   | END  |PGUP  |BKSPCK|
  * |------+------+------+------+------+------|                     |------+------+------+------+------+------|
- * |      |  {   |  }   |  [   |  ]   |  \   |-------.     ,-------|  |   | LEFT | DOWN |RIGHT |PGDOWN|      |
+ * |      |  {   |  }   |  [   |  ]   |  ?   |-------.     ,-------|  |   | LEFT | DOWN |RIGHT |PGDOWN|      |
  * |------+------+------+------+------+------|  MUTE |     |       |------+------+------+------+------+------|
- * |      |  (   |  )   |      |      |PCREEN|-------|     |-------| =    |   �  |      |  �   |  ~   |      |
+ * |      |  (   |  )   |  /   |  \   |PCREEN|-------|     |-------| =    |   �  |      |  �   |  ~   |      |
  * `-----------------------------------------/       /      \      \-----------------------------------------'
  *            |   [  | LGUI | CMD  |SYMB  | /SPACE  /        \SPACE \  |NUMP  | ALTGR| RALT |   ]  |
  *            |      |      | CAPS |ENTER |/       /          \      \ |ENTER | ALT  |      |      |
@@ -97,8 +97,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_SYMB] = LAYOUT( \
   _______,     _______,   _______,    _______, _______ ,  _______,                          _______,       _______,        _______,  _______,      _______ ,_______, \
   TD(ESC_SYM), KC_EXLM,   KC_AT,      KC_HASH, KC_DOLLAR, KC_PERC,                          KC_AMPR,       KC_HOME,        KC_END,   KC_PGUP,      KC_PGDN , KC_DEL,
-  XXXXXXX,     KC_LCBR,   KC_RCBR,    KC_LBRC, KC_RBRC,   KC_BSLS,                          LSFT(KC_BSLS), KC_LEFT,        KC_DOWN,  KC_UP,        KC_RIGHT, XXXXXXX,
-  XXXXXXX,     LSFT(KC_9),LSFT(KC_0), XXXXXXX, XXXXXXX,   KC_PSCR, _______,       XXXXXXX,  KC_EQUAL,      ALGR(KC_QUOTE), XXXXXXX, ALGR(KC_BSLS), KC_TILDE,XXXXXXX,\
+  XXXXXXX,     KC_LCBR,   KC_RCBR,    KC_LBRC, KC_RBRC,   KC_QUES,                          LSFT(KC_BSLS), KC_LEFT,        KC_DOWN,  KC_UP,        KC_RIGHT, XXXXXXX,
+  XXXXXXX,     LSFT(KC_9),LSFT(KC_0), KC_SLASH,KC_BSLS,   KC_PSCR, _______,       XXXXXXX,  KC_EQUAL,      ALGR(KC_QUOTE), XXXXXXX, ALGR(KC_BSLS), KC_TILDE,XXXXXXX,\
                    _______, _______, MT(KC_LCMD,KC_CAPS), _______, _______,       _______, _______, _______, _______, _______ \
 ),
 /* _TUNE
@@ -444,7 +444,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
     switch (get_highest_layer(layer_state)) {
-        case _MACOS:
         case _WIN10:
             if (index == 0) {
                 if (clockwise) {
@@ -470,29 +469,6 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 
 #endif
 
-layer_state_t layer_state_set_user(layer_state_t state) {
-  state = update_tri_layer_state(state, _NUMP, _SYMB, _TUNE);
-#ifdef RGBLIGHT_ENABLE
-    switch (biton32(state)) {
-    case _NUMP:
-        pimoroni_trackball_set_rgbw(0, 40, 255, 0.5);
-        break;
-    case _SYMB:
-        pimoroni_trackball_set_rgbw(255, 255, 0, 0.5);
-        break;
-    case _TUNE:
-        pimoroni_trackball_set_rgbw(255, 0, 0, 0.5);
-        brea[[sk;
-    case _WIN10:
-        pimoroni_trackball_set_rgbw(128, 0, 255, 0.5);
-        break;
-    case _MOUSE:
-        pimoroni_trackball_set_rgbw(128, 0, 255, 0.5);
-        break;
-    }
-#endif
-return state;
-}
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
